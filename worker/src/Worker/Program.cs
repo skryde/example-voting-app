@@ -113,7 +113,9 @@ namespace Worker
                 try
                 {
                     Console.Error.WriteLine("Connecting to redis");
-                    return ConnectionMultiplexer.Connect(ipAddress);
+                    
+                    // https://stackoverflow.com/a/23923545/3508426
+                    return ConnectionMultiplexer.Connect($"{ipAddress},password=redis_password");
                 }
                 catch (RedisConnectionException)
                 {
